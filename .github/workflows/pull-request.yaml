@@ -1,0 +1,25 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: run test
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        project: [ generate_image ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt-hotspot'
+          java-version: '11.0.12'
+        env:
+          SBT_OPTS: "-Xms2G -Xmx16G -XX:+UseParallelGC -Duser.timezone=UTC -Dfile.encoding=UTF8"
+      - run: sbt "project ${{ matrix.project }}" "scalafmtCheckAll" "scalafixAll --check" "test"
+
