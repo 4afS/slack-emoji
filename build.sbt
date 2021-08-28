@@ -6,14 +6,16 @@ ThisBuild / organization := "io.slack_emoji"
 
 lazy val generate_image = project.in(file("generate_image"))
   .settings(
-    scalacOptions ++= customScalacOptions
+    scalacOptions ++= customScalacOptions,
+    libraryDependencies ++= Seq(
+      scalatest
+    )
   )
 
 val customScalacOptions = Seq(
   "-encoding", "utf8",
   "-deprecation",
   "-unchecked",
-  "-Xlint",
   "-feature",
   "-language:existentials",
   "-language:experimental.macros",
