@@ -19,7 +19,7 @@ jobs:
       JVM_OPTS: -Xms2048M -Xmx2048M -Xss6M -XX:ReservedCodeCacheSize=256M -Dfile.encoding=UTF-8
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-scala@v13
+      - uses: olafurpg/setup-scala@v13
         with:
           java-version: 'adopt@1.11'
       - run: sbt "project ${{ matrix.project }}" "scalafmtCheckAll" "scalafixAll --check" "test"
