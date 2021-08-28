@@ -1,1 +1,2 @@
-@main def main() = print("running `generate_image` project...")
+@main
+def main() = print("running `generate_image` project...")
