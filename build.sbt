@@ -1,12 +1,10 @@
 import Dependencies._
 
-ThisBuild / scalaVersion     := "2.13.6"
+ThisBuild / scalaVersion     := "3.0.1"
 ThisBuild / version          := "0.1.0-SNAPSHOT"
-ThisBuild / organization     := "com.example"
-ThisBuild / organizationName := "example"
+ThisBuild / organization     := "io.slack_emoji"
 
-lazy val root = (project in file("."))
+lazy val `generate_image` = Project("generate_image", file("generate_image"))
   .settings(
-    name := "slack-emoji",
-    libraryDependencies += scalaTest % Test
+//    libraryDependencies += scalaTest % Test
   )
