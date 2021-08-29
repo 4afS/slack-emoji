@@ -1,6 +1,6 @@
 package io.slack_emoji.generate_image.model
 
-import io.slack_emoji.lib.when
+import io.slack_emoji.lib.either.when
 
 enum Text:
   case Text1(val _1: String)
@@ -24,7 +24,7 @@ object Text:
       case _ =>
         Left(TextError.InvalidNumberOfLines)
 
-  val maxLen = 10
+  private val maxLen = 10
 
   private def validateText(text: String): Either[TextError, String] =
     for
