@@ -6,6 +6,17 @@ ThisBuild / organization := "io.slack_emoji"
 
 lazy val generate_image = project
   .in(file("generate_image"))
+  .dependsOn(lib)
+  .settings(
+    scalacOptions ++= customScalacOptions,
+    libraryDependencies ++=
+      depTest(
+        scalatest
+      )
+  )
+
+lazy val lib = project
+  .in(file("lib"))
   .settings(
     scalacOptions ++= customScalacOptions,
     libraryDependencies ++=
