@@ -1,5 +1,7 @@
 package io.slack_emoji.generate_image.model
 
+import io.slack_emoji.lib.when
+
 enum Text:
   case Text1(val _1: String)
   case Text2(val _1: String, _2: String)
@@ -26,8 +28,8 @@ object Text:
 
   private def validateText(text: String): Either[TextError, String] =
     for
-      _ <- Either.cond(text.length > 0, (), TextError.TooShort)
-      _ <- Either.cond(text.length <= 10, (), TextError.TooLong)
+      _ <- when(text.length > 0, TextError.TooShort)
+      _ <- when(text.length <= 10, TextError.TooLong)
     yield text
 
 end Text
